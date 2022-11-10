@@ -1,3 +1,3 @@
-export { default as RenderEngine } from './components/RenderEngine';
+export { default as RenderEngine } from './RenderEngine';
 
 export * from './types';

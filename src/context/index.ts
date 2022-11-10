@@ -9,8 +9,6 @@ export type Mode = 'add' | 'view' | 'edit';
 interface EngineContextValue {
   globalEngine: Engine;
   eventEmitter: EventEmitter;
-  mode: Mode;
-  editingId?: string;
 }
 
 export const EngineContext = createContext<EngineContextValue | null>(null);

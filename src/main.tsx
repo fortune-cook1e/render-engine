@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from './App';
+import Emulator from './Emulator';
 
 const ROOT_ELEMENT = document.getElementById('root');
 
-render(<App />, ROOT_ELEMENT);
+render(<Emulator />, ROOT_ELEMENT);

@@ -229,7 +229,7 @@
       "always",
       {
         // 强制在花括号中使用一致的空格
-        "objectsInObjects": false
+        "objectsInObjects": true
       }
     ],
     "array-bracket-spacing": [2, "never"], // 禁止在数组括号内出现空格

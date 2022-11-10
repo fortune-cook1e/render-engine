@@ -31,3 +31,10 @@ export type DndDropResult = {
 };
 
 export type EngineCmpProps = EngineComponentData;
+
+export type RenderEngineProps = {
+  dataSource?: {
+    cmpList: EngineComponentData[];
+    pageConfig: PageConfig;
+  };
+};
