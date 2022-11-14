@@ -1,20 +1,21 @@
-import * as path from 'path';
+import * as path from 'path'
 
-import alias from '@rollup/plugin-alias';
-import { babel } from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import dts from 'rollup-plugin-dts';
-import external from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
-import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript2';
-import visualizer from 'rollup-plugin-visualizer';
+import alias from '@rollup/plugin-alias'
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import resolve from '@rollup/plugin-node-resolve'
+import dts from 'rollup-plugin-dts'
+import external from 'rollup-plugin-peer-deps-external'
+import postcss from 'rollup-plugin-postcss'
+import { terser } from 'rollup-plugin-terser'
+import typescript from 'rollup-plugin-typescript2'
+import visualizer from 'rollup-plugin-visualizer'
 
-const packageJson = require('./package.json');
+const packageJson = require('./package.json')
 
-const EXTENSIONS = ['.ts', '.tsx', '.js'];
-const ROOT_DIR = path.resolve(__dirname, './src');
+const EXTENSIONS = ['.ts', '.tsx', '.js']
+const ROOT_DIR = path.resolve(__dirname, './src')
 
 export default [
   {
@@ -23,50 +24,53 @@ export default [
       dist: path.resolve(__dirname, './dist'),
       file: packageJson.module,
       format: 'esm',
-      sourcemap: true,
+      sourcemap: true
     },
     plugins: [
       commonjs(), // 打包成cjs格式
+      resolve(),
+      typescript({ useTsconfigDeclarationDir: true }),
       babel({
-        babelHelpers: 'bundled',
+        exclude: 'node_modules/**',
+        babelHelpers: 'runtime',
         extensions: EXTENSIONS,
-        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+        babelrc: true
       }),
       external(), // 阻止打包 peer依赖
-      resolve(),
+
       alias({
         resolve: EXTENSIONS,
         entries: [
           {
             find: '@',
-            replacement: ROOT_DIR,
-          },
-        ],
+            replacement: ROOT_DIR
+          }
+        ]
       }),
-
-      typescript({ useTsconfigDeclarationDir: true }),
+      json(),
       postcss({
         minimize: true,
         modules: true,
         use: {
           sass: null,
           stylus: null,
-          less: { javascriptEnabled: true },
+          less: { javascriptEnabled: true }
         },
-        extensions: ['.less'],
+        extensions: ['.less', '.css'],
         extract: true,
+        config: true
       }),
-      terser(), // 压缩bundle
+      terser() // 压缩bundle
       // visualizer({
       // 	filename: 'bundle-analysis.html',
       // 	open: true
       // })
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    external: [/\.css$/],
-    plugins: [dts()],
-  },
-];
+    ]
+  }
+  // {
+  //   input: 'src/index.ts',
+  //   output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+  //   external: [/\.css$/],
+  //   plugins: [dts()]
+  // }
+]

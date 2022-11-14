@@ -1,23 +1,23 @@
-import { Button as AntdButton } from 'antd';
-import React from 'react';
+import { Button as AntdButton } from 'antd'
+import React from 'react'
 
-import { EngineCmpProps } from '@/types';
-import { EngineButtonProps } from '@/types/attr';
+import { EngineComponentSchema } from '@/types'
+import { EngineButtonProps } from '@/types/attr'
 
-const Button = (props: EngineCmpProps): JSX.Element => {
-  const { values, style } = props;
-  const { text = '', type, disabled, onClick } = values as EngineButtonProps;
+const Button = (props: EngineComponentSchema): JSX.Element => {
+  const { values, style } = props
+  const { text = '', type, disabled, onClick } = values as EngineButtonProps
 
   const onBtnClick = (event: MouseEvent) => {
-    event.stopPropagation();
-    onClick?.(event as any);
-  };
+    event.stopPropagation()
+    onClick?.(event as any)
+  }
 
   return (
     <AntdButton style={style} type={type} disabled={disabled} onClick={(e: any) => onBtnClick(e)}>
       {text}
     </AntdButton>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

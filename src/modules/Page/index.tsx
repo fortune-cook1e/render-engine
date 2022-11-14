@@ -1,19 +1,19 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './index.module.less';
+import styles from './index.module.less'
 
-import { EngineCmpProps, PageConfig } from '@/types';
+import { EngineComponentSchema, PageConfig } from '@/types'
 
-const Page = (props: EngineCmpProps): JSX.Element => {
-  const { values } = props;
+const Page = (props: EngineComponentSchema): JSX.Element => {
+  const { values } = props
 
-  const { title } = values as PageConfig;
+  const { title } = values as PageConfig
 
   const onPageClick = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-  };
+    event.stopPropagation()
+  }
 
-  return <div className={styles.page}>{title}</div>;
-};
+  return <div className={styles.page}>{title}</div>
+}
 
-export default Page;
+export default Page

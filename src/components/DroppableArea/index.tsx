@@ -6,7 +6,7 @@ import EngineComponentMap from '../EngineComponentMap'
 import styles from './index.module.less'
 
 import { useEngineContext } from '@/context'
-import { EngineComponentData, EngineComponentType } from '@/types'
+import { EngineComponentSchema, EngineComponentType } from '@/types'
 
 const ENGINE_DROP_ID = 'engine'
 
@@ -21,14 +21,14 @@ const DroppableArea = (): JSX.Element => {
   const onDragEnd = (result: DropResult) => {
     const engineData = globalEngine.getEngineData()
     const { draggableId, destination, source } = result
-    const dragItem = engineData.find(c => c.uniqueId === draggableId)
+    const dragItem = engineData.find((c: EngineComponentSchema) => c.uniqueId === draggableId)
     if (!destination || !dragItem || !source) return
     if (destination.droppableId === source.droppableId && destination.index === source.index) {
       return
     }
     const { index: destIndex } = destination
     const { index: sourceIndex } = source
-    const newCmps: EngineComponentData[] = JSON.parse(JSON.stringify(engineData))
+    const newCmps: EngineComponentSchema[] = JSON.parse(JSON.stringify(engineData))
     // 先插入后删除旧数据
     // 插入待加入
     newCmps.splice(sourceIndex, 1)
@@ -46,7 +46,7 @@ const DroppableArea = (): JSX.Element => {
             style={pageStyle}
             {...dropProvided.droppableProps}
           >
-            {engineRenderData.map((c: EngineComponentData, cIndex: number) => {
+            {engineRenderData.map((c: EngineComponentSchema, cIndex: number) => {
               return (
                 <Draggable
                   isDragDisabled={c.cmpType === EngineComponentType.Page}

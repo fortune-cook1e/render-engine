@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react'
 import { fetchStaffList } from '@/apis/staff'
 import { GENDER_OPTIONS } from '@/constants/staff'
 import { OCCUPATION_OPTIONS, DEPARTMENT_OPTIONS } from '@/constants/staff'
-import { EngineCmpProps } from '@/types'
+import { EngineComponentSchema } from '@/types'
 import { EngineEmployeeProps } from '@/types/attr'
 import { Department, Gender, IStaff, Occupation } from '@/types/staff'
 
-const Employee = (props: EngineCmpProps): JSX.Element => {
+const Employee = (props: EngineComponentSchema): JSX.Element => {
   const { values } = props
   const { page, pageSize, keyword } = values as EngineEmployeeProps
 

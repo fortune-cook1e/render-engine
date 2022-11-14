@@ -2,9 +2,9 @@ import {
   PageConfig,
   MaterialComponentData,
   EngineComponentType,
-  EngineComponentData,
-} from '../types';
-import { getUniqueId } from '../utils';
+  EngineComponentSchema
+} from '../types'
+import { getUniqueId } from '../utils'
 
 // 左侧组件列表数据
 // TIP: 每次增加一个组件需要在以下地方同步处理
@@ -20,8 +20,8 @@ export const MATERIAL_LIST: MaterialComponentData[] = [
     values: {
       text: '默认文本',
       type: 'primary',
-      disabled: false,
-    },
+      disabled: false
+    }
   },
   {
     id: 'employee',
@@ -30,17 +30,17 @@ export const MATERIAL_LIST: MaterialComponentData[] = [
     style: {},
     values: {
       page: 1,
-      pageSize: 10,
-    },
-  },
-];
+      pageSize: 10
+    }
+  }
+]
 
 export const DEFAULT_PAGE_CONFIG: PageConfig = {
   style: {},
-  title: '默认标题',
-};
+  title: '默认标题'
+}
 
-export const DEFAULT_ENGINE_DATA: EngineComponentData[] = [
+export const DEFAULT_ENGINE_DATA: EngineComponentSchema[] = [
   {
     id: 'page',
     uniqueId: getUniqueId(),
@@ -49,7 +49,7 @@ export const DEFAULT_ENGINE_DATA: EngineComponentData[] = [
     style: {},
     values: {
       title: '首页',
-      style: {},
-    },
-  },
-];
+      style: {}
+    }
+  }
+]
