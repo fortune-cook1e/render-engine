@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 
-import { useEngineContext } from '../../../../context';
-import { EngineComponentType, EngineComponentData, EngineCmpProps } from '../../../../types';
-import Button from '../../components/Button';
-import Employee from '../../components/Employee';
-import Page from '../../components/Page';
-import RemoveWrapper from '../../RemoveWrapper';
+import RemoveWrapper from '@/components/RemoveWrapper';
+import { useEngineContext } from '@/context';
+import Button from '@/modules/Button';
+import Employee from '@/modules/Employee';
+import Page from '@/modules/Page';
+import { EngineComponentType, EngineComponentData, EngineCmpProps } from '@/types';
 
 const ENGINE_COMPONENT_MAP: Record<EngineComponentType, (props: EngineCmpProps) => JSX.Element> = {
   [EngineComponentType.Page]: Page,
